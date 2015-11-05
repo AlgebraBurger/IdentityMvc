@@ -1,0 +1,82 @@
+﻿@model IEnumerable<CrmCoreLite.Areas.Units.Models.Basement>
+
+@{
+    ViewBag.Title = "Basements";
+}
+
+<h2>Basements</h2>
+
+
+<div class="row">
+    <div class="col-lg-4">
+        <div class="form-group">
+            @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-default" })
+        </div>
+    </div>
+    <div class="col-lg-8">
+        <div class="input-group pull-right">
+            @using (Html.BeginForm("Index", "Basements", new { area = "Products" }, FormMethod.Get, new { @class = "navbar-form navbar-left" }))
+            {
+                <div class="form-group">
+                    @Html.DropDownList("bType", null, "Select Basement Number", htmlAttributes: new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    @Html.TextBox("UnitNo", null, new { @class = "form-control", @placeholder = "Unit No" })
+                </div>
+                <button type="submit" value="Submit" class="btn btn-default ">Submit</button>
+            }
+        </div>
+
+
+    </div>
+</div>
+
+
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UnitNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BaseNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UnitArea)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalContractPrice)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UnitNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BaseNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UnitArea)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalContractPrice)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

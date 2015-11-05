@@ -1,0 +1,56 @@
+﻿@model IEnumerable<CrmCoreLite.Models.AppUser>
+
+
+@{
+    ViewBag.Title = "Users";
+}
+
+<h2>Users</h2>
+
+<div class="row">
+    <div class="col-lg-6">
+        <div class="form-group">
+            @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-default" })
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="input-group pull-right">
+
+            
+        </div>
+
+
+    </div>
+</div>
+
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (CrmCoreLite.Models.AppUser user in Model)
+        {
+        <tr>
+         
+            <td>@user.UserName</td>
+            <td>@user.Email</td>
+            <td class="text-right">
+                @using (Html.BeginForm("Delete", "Users", new { area = "Settings", id = user.Id }))
+                {
+                    @Html.ActionLink("Edit", "Edit", new { area = "Settings", id = user.Id }, new { @class = "btn btn-primary btn-xs" })
+                    <button class="btn btn-danger btn-xs"
+                            type="submit">
+                        Delete
+                    </button>
+                }
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

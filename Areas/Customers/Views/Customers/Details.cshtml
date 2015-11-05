@@ -1,0 +1,320 @@
+﻿@model CrmCoreLite.Areas.Customers.Models.Customer
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Customer</h4>
+    <hr />
+
+    <div class="panel panel-default">
+        <div class="panel-heading"></div>
+        <div class="panel-body">
+
+
+            <div>
+
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active"><a href="#customerdetail" aria-controls="customerdetail" role="tab" data-toggle="tab">Customer Detail</a></li>
+                    <li role="presentation"><a href="#bills" aria-controls="bills" role="tab" data-toggle="tab">Bills</a></li>                    
+                </ul>
+
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="customerdetail">
+
+                        <!-- start details -->
+
+                        <div class="row">
+                            <div class="col-lg-6">
+
+                                <dl class="dl-horizontal">
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.AccountNo)
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.AccountNo)
+                                    </dd>
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.FullName)
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.FullName)
+                                    </dd>
+
+
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.EmailAddress)
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.EmailAddress)
+                                    </dd>
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.Telephone)
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.Telephone)
+                                    </dd>
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.Mobile)
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.Mobile)
+                                    </dd>
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.Birthplace)
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.Birthplace)
+                                    </dd>
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.PermanentAddress)
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.PermanentAddress)
+                                    </dd>
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.Nationality)
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.Nationality)
+                                    </dd>
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.CivilStatus)
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.CivilStatus)
+                                    </dd>
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.BirthDay)
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.BirthDay)
+                                    </dd>
+
+
+                                </dl>
+
+                                <hr />
+
+                                <dl class="dl-horizontal">
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.TaxIdentificationNumber)
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.TaxIdentificationNumber)
+                                    </dd>
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.Passport)
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.Passport)
+                                    </dd>
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.ValidGovernmentID)
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.ValidGovernmentID)
+                                    </dd>
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.PlaceIssue)
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.PlaceIssue)
+                                    </dd>
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.DateIssue)
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.DateIssue)
+                                    </dd>
+
+                                </dl>
+                            </div>
+                            <div class="col-lg-6">
+
+
+
+                                <dl class="dl-horizontal">
+
+
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.EmploymentStatus)
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.EmploymentStatus)
+                                    </dd>
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.CompanyName)
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.CompanyName)
+                                    </dd>
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.NatureofBusiness)
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.NatureofBusiness)
+                                    </dd>
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.Occupation)
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.Occupation)
+                                    </dd>
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.CompanyAddress)
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.CompanyAddress)
+                                    </dd>
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.CompanyTelephoneNumbers)
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.CompanyTelephoneNumbers)
+                                    </dd>
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.YearsWithCompany)
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.YearsWithCompany)
+                                    </dd>
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.MonthlyIncome)
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.MonthlyIncome)
+                                    </dd>
+
+
+
+
+                                </dl>
+                                <hr />
+                                <dl class="dl-horizontal">
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.DateCreated)
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.DateCreated)
+                                    </dd>
+
+                                </dl>
+
+                            </div>
+                        </div>
+
+                        <!-- end details -->
+
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="bills">
+
+                        <table class="table">
+                            <tr>
+                                <th>Bill No</th>
+                                <th>Amount</th>
+                                <th>Date Due</th>
+                                <th>Status</th>
+                                <th></th>
+                            </tr>
+
+
+                            @foreach (var bills in ViewBag.BillList)
+                            {
+
+                                <tr class="@( bills.BillStatus == CrmCoreLite.Areas.Billings.Models.BillStatus.PAID ? "success" : "" )">
+                                    <td>@bills.BillCode</td>
+                                    <td>@(((decimal)bills.BillAmount).ToString("C2"))</td>
+                                    <td>@bills.BillDue</td>
+                                    <td>@bills.BillStatus</td>
+                                    <td>@Html.ActionLink("Edit", "Edit", "Bills", new { area = "Billings", id = bills.ID }, new {  })</td>
+                                    
+                                    
+                                </tr>
+                            }
+
+
+                        </table>
+
+                    </div>
+                    
+                </div>
+
+            </div>
+
+           
+           
+            
+
+        </div>
+    </div>
+    
+  
+
+
+</div>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+
+@section Scripts
+{
+    <script>
+        $('#customerdetail a').click(function (e) {
+            e.preventDefault()
+            $(this).tab('show')
+        })
+    </script>
+}

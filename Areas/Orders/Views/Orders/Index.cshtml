@@ -1,0 +1,95 @@
+﻿@model IEnumerable<CrmCoreLite.Areas.Orders.Models.Order>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<div class="row">
+    <div class="col-lg-4">
+        <div class="form-group">
+            @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-default" })
+        </div>
+    </div>
+    <div class="col-lg-8">
+        <div class="input-group pull-right">
+            @using (Html.BeginForm("Index", "Orders", new { area = "Orders" }, FormMethod.Get, new { @class = "navbar-form navbar-left" }))
+            {
+                <div class="form-group">
+                    @Html.TextBox("OrderNo", null, new { @class = "form-control", @placeholder = "Order No" })
+                </div>
+                <button type="submit" value="Submit" class="btn btn-default ">Submit</button>
+            }
+        </div>
+
+
+    </div>
+</div>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderNo)
+        </th>
+        <th>
+            Customer
+        </th>
+        <th>
+            Agent
+        </th>        
+        <th>
+            @Html.DisplayNameFor(model => model.ReservationFee)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalOrderAmount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PaymentType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ContractStatus)
+        </th>
+       
+        <th>
+            @Html.DisplayNameFor(model => model.DateCreated)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Customer.FullName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Agent.FullName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReservationFee)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalOrderAmount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PaymentType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ContractStatus)
+        </td>
+      
+        <td>
+            @Html.DisplayFor(modelItem => item.DateCreated)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.OrderID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.OrderID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.OrderID })
+        </td>
+    </tr>
+}
+
+</table>

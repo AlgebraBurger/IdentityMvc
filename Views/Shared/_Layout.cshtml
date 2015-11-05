@@ -1,0 +1,160 @@
+﻿@using Microsoft.AspNet.Identity
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - CrmCore</title>
+    @Scripts.Render("~/bundles/jquery")
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")    
+    @Scripts.Render("~/bundles/typeahead")       
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top ">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("CrmCore", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                  
+                    <li>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            Products<span class="caret"></span>
+                        </a>
+
+                        <ul class="dropdown-menu" role="menu">                            
+                            <li>@Html.ActionLink("Units", "Index", "Units", new { area = "Products" }, null)</li>    
+                            <li>@Html.ActionLink("Basements", "Index", "Basements", new { area = "Products" }, null)</li>    
+                        </ul>
+
+
+                    </li>                    
+                    
+                                   
+                    <li class="dropdown">
+                        
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            Brokers<span class="caret"></span>
+                        </a>
+
+                        <ul class="dropdown-menu" role="menu">
+                            <li>@Html.ActionLink("Brokers", "Index", "Brokers", new { area = "Brokers" }, null)</li>
+                            <li>@Html.ActionLink("Agents", "Index", "Agents", new { area = "Brokers" }, null)</li>                            
+                        </ul>
+
+                    </li>
+                    <li>@Html.ActionLink("Customers", "Index", "Customers", new { area = "Customers" }, null)</li>  
+                    
+                    <li class="dropdown">
+
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            Transactions<span class="caret"></span>
+                        </a>
+
+                        <ul class="dropdown-menu" role="menu">
+                            <li>@Html.ActionLink("Orders", "Index", "Orders", new { area = "Orders" }, null)</li>                            
+                            <li>@Html.ActionLink("Billings", "Index", "Bills", new { area = "Billings" }, null)</li>                            
+                        </ul>
+
+                    </li>
+                    
+                </ul>
+               
+                @if (Request.IsAuthenticated)
+                {
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <div class="navbar-form">
+                                <div id="remote">
+                                    <input class="typeahead form-control" type="text" placeholder="Search Customer">
+                                </div>
+                            </div>
+                            
+
+                        </li>
+                        <li>@Html.ActionLink("Account", "Index", "Account", new { area = "" }, null)</li>
+                       
+                        
+
+                        <li class="dropdown">
+
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                Settings<span class="caret"></span>
+                            </a>
+
+                            <ul class="dropdown-menu" role="menu">
+                                <li>@Html.ActionLink("Users", "Index", "Users", new { area = "Settings" }, null)</li>
+                                <li>@Html.ActionLink("Roles", "Index", "RoleAdmin", new { area = "Settings" }, null)</li>
+                            </ul>
+
+                        </li>
+
+                        <li>@Html.ActionLink("Sign Out", "Logout", "Account", new { area = "" }, null)</li>
+                    </ul>
+                }else{
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>@Html.ActionLink("Log in", "Login", "Account", new { area = "" }, null)</li>
+                    </ul>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid body-content" >
+        @RenderBody()
+
+        
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - CrmCore</p>
+        </footer>
+    </div>
+    
+
+    <script>
+
+    var getData = new Bloodhound({
+        datumTokenizer: Bloodhound.tokenizers.obj.whitespace('Firstname'),
+        queryTokenizer: Bloodhound.tokenizers.whitespace,
+        prefetch: 'http://localhost:57373/Customers/Customers/getCustomer?SearchName=%QUERY',
+        remote: {
+            url: 'http://localhost:57373/Customers/Customers/getCustomer?SearchName=%QUERY',
+            wildcard: '%QUERY'
+        },
+    });
+
+    var elements = [];
+
+    elements.push('<div>');
+    elements.push('<strong> {{FullName}} </strong>');
+    elements.push('<h6>{{EmailAddress}}</h6>');
+    elements.push('<h6>{{Mobile}}</h6>');
+    elements.push('</div>');
+    var el = elements.join(' ');
+    
+
+    var templ = Hogan.compile(el);
+
+    $('#remote .typeahead').typeahead(null, {
+        limit: 5,
+        displayKey: 'FullName',
+        source: getData,
+        templates: {
+            suggestion: function (data) { return templ.render(data); }
+        }
+    }).bind("typeahead:selected", function (obj, datum, name) {
+        window.location = "/Customers/Customers/Details/" + datum.ID;
+    });
+
+    </script>
+    
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

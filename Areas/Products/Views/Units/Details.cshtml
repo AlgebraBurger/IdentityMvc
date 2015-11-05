@@ -1,0 +1,116 @@
+﻿@model CrmCoreLite.Areas.Units.Models.Unit
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Unit</h4>
+    <hr />
+
+    <div class="panel panel-default">
+        <div class="panel-heading"></div>
+        <div class="panel-body">
+
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.ProductNo)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.ProductNo)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.UnitNo)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.UnitNo)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.UnitType)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.UnitType)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.uViewType)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.uViewType)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.UnitArea)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.UnitArea)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Balcony)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Balcony)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.TotalArea)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.TotalArea)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.TotalListPrice)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.TotalListPrice)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.TransferMiscFees)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.TransferMiscFees)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.TotalContractPrice)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.TotalContractPrice)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.UnitStatus)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.UnitStatus)
+                </dd>
+
+            </dl>
+
+        </div>
+    </div>
+
+   
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,174 @@
+﻿@model IEnumerable<CrmCoreLite.Areas.Billings.Models.Bill>
+
+@{
+    ViewBag.Title = "Bills";
+}
+
+<h2>Bills</h2>
+
+@using (Html.BeginForm("Index", "Bills", new { area = "Billings" }, FormMethod.Get, new {  }))
+{
+    <div class="row">
+        <div class="col-lg-4">
+            @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-default" })
+        </div>
+       
+
+        <div class="col-lg-8" >
+
+         
+
+                <div class="form-inline">
+                    
+                    <div class="form-group">
+                        @Html.DropDownList("billStatus", null, "Select Bill Status", htmlAttributes: new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        @Html.TextBox("OrderNo", null, new { @class = "form-control", @placeholder = "Order No" })
+                    </div>
+                    <div class="form-group">
+                        @Html.TextBox("BillCode", null, new { @class = "form-control", @placeholder = "Bill Code" })
+                    </div>
+                    
+                    <div class="form-group">&nbsp;&nbsp;&nbsp;</div> 
+
+                    <div class="form-group">
+                        @Html.TextBox("FromDate", null, new { @type = "date", @class = "form-control", @placeholder = "From"  })
+                    </div> 
+            
+                    <div class="form-group">
+                        @Html.TextBox("ToDate", null, new { @type = "date", @class = "form-control", @placeholder = "To" })
+                    </div>
+                    <div  class="form-group">
+                        <button type="submit" value="Submit" class="btn btn-default">Filter</button>
+                    </div>
+
+                </div>
+
+        </div>
+
+    </div>
+}
+         
+
+                    <br/>
+
+
+
+                
+         
+        <table class="table table-bordered table-hover" id="datatable" style="font-size:12px;">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.BillCode)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.Order.OrderNo)
+                    </th>
+                    <th>
+                        Customer
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.BillNo)
+                    </th>
+
+                    <th class="text-right">
+                        @Html.DisplayNameFor(model => model.BillAmount)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.BillDue)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.BillStatus)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PaymentClass)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PaymentSource)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PaymentAmount)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PaymentCreated)
+                    </th>
+
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @{ var rowColor = ""; }
+                @foreach (var item in Model)
+                {
+
+
+                    switch (item.BillStatus)
+                    {
+                        case CrmCoreLite.Areas.Billings.Models.BillStatus.PAID: rowColor = "success"; break;
+                        case CrmCoreLite.Areas.Billings.Models.BillStatus.OVERDUE: rowColor = "danger"; break;
+                        case CrmCoreLite.Areas.Billings.Models.BillStatus.PROCESSING: rowColor = "warning"; break;
+                        default: rowColor = ""; break;
+                    }
+
+
+                    <tr class="@rowColor">
+                        <td>
+                            @Html.DisplayFor(modelItem => item.BillCode)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Order.OrderNo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Customer.FullName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.BillNo)
+                        </td>
+
+                        <td class="text-right">
+                            @Html.DisplayFor(modelItem => item.BillAmount)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.BillDue)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.BillStatus)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PaymentClass)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PaymentSource)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PaymentAmount)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PaymentCreated)
+                        </td>
+
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <script>
+            $(document).ready(function () {
+                $('#datatable').DataTable({
+                    "pageLength": 50,
+                    "aaSorting": []
+                });
+            });
+        </script>

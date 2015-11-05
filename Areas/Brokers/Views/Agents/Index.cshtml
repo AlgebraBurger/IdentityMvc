@@ -1,0 +1,103 @@
+﻿@model IEnumerable<CrmCoreLite.Areas.Brokers.Models.Agent>
+
+@{
+    ViewBag.Title = "Agents";
+}
+
+<h2>Agents</h2>
+<div class="row">
+    <div class="col-lg-2">
+        <div class="form-group">
+            @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-default" })
+        </div>
+    </div>
+    <div class="col-lg-10">
+        <div class="input-group pull-right">
+
+            @using (Html.BeginForm("Index", "Agents", new { area = "Brokers" }, FormMethod.Get, new { @class = "navbar-form navbar-left" }))
+            {
+                <div class="form-group">
+                    @Html.TextBox("AgentNo", null, new { @class = "form-control", @placeholder = "Agent No" })
+                </div>
+                <div class="form-group">
+                    @Html.TextBox("Agency", null, new { @class = "form-control", @placeholder = "Agency Name" })
+                </div>
+               
+                <div class="form-group">
+                    @Html.TextBox("SearchName", null, new { @class = "form-control", @placeholder = "Full Name" })
+                </div>
+                <button type="submit" value="Submit" class="btn btn-default ">Filter</button>
+
+            }
+        </div>
+
+
+    </div>
+</div>
+
+<table class="table" id="datatable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.AgentNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FullName)
+            </th>
+
+
+            <th>
+                Contact No
+            </th>
+
+
+
+            <th>
+                @Html.DisplayNameFor(model => model.Agency)
+            </th>
+            <th>
+                Broker
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(item.AgentNo, "Details", new { id = item.ID })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FullName)
+                </td>
+
+                <td>
+                    E: @Html.DisplayFor(modelItem => item.EmailAddress) <br />
+                    T: @Html.DisplayFor(modelItem => item.Telephone) <br />
+
+                    M: @Html.DisplayFor(modelItem => item.Mobile)
+                </td>
+
+
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Agency)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Broker.FullName)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<script>
+    $(document).ready(function () {
+        $('#datatable').DataTable();
+    });
+</script>

@@ -1,0 +1,60 @@
+﻿@using CrmCoreLite.Areas.Settings.Models
+@using CrmCoreLite.Infrastructure
+@model IEnumerable<AppRole>
+@{ ViewBag.Title = "Roles"; }
+
+<h2>User Roles</h2>
+
+
+
+@Html.ActionLink("Create", "Create", null, new { @class = "btn btn-default" })
+
+    <table class="table">
+        <thead>
+            <tr>
+               
+                <th>Name</th>
+                <th>Users</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Count() == 0)
+            {
+                <tr><td colspan="4" class="text-center">No Roles</td></tr>
+            }
+            else
+            {
+                foreach (AppRole role in Model)
+                {
+                    <tr>
+                      
+                        <td>@role.Name</td>
+                        <td>
+                            @if (role.Users == null || role.Users.Count == 0)
+                            {
+                                @: No Users in Role
+                            }
+                            else
+                            {
+                                <p>
+                                    @string.Join(", ", role.Users.Select(x => Html.GetUserName(x.UserId)))
+                                </p>
+                            }
+                        </td>
+                        <td class="text-right">
+                            @using (Html.BeginForm("Delete", "RoleAdmin", new { area = "Settings", id = role.Id }))
+                            {
+                                @Html.ActionLink("Edit", "RoleAdmin", new { area = "Settings", id = role.Id }, new { @class = "btn btn-primary btn-xs" })
+                                <button class="btn btn-danger btn-xs"
+                                        type="submit">
+                                    Delete
+                                </button>
+                            }
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+
